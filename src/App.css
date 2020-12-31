@@ -64,13 +64,6 @@ td {
   border-collapse: separate;
 }
 
-body {
-  text-align: center;
-}
-input {
-  margin-right: 20px;
-}
-
 .list-group-item {
   position: relative;
   display: block;
