@@ -33,9 +33,6 @@ class NewCharacterForm extends React.Component {
               <label className = 'radio-label'>
                 Friend
               </label>  
-            {/* </div>
-            <div className="radio"> */}
-
               <input className='radio-input'
                 name="friendOrFoe"
                 type="radio"
