@@ -51,13 +51,25 @@ s
 }
 
 table {
-  border-spacing: 1em;
-  margin: 1rem auto;
+  padding: 2px;
+  border: 2px;
+  text-align: center;
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
 }
-td {
-  padding: 1rem 1.2rem;
-  border-radius: 6px;
-  border: 1px solid rgb(5, 0, 0);
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+  border-top: 1px solid rgb(121, 119, 119);
+  border-bottom: 1px solid rgb(121, 119, 119);
+}
+
+td, th {
+  padding: 1rem 1.2rem; 
+  
 }
 
 #border-separate {
@@ -138,4 +150,13 @@ fieldset {
   display: inline-block;
   vertical-align: center;
   padding-left: 1rem;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color:#ffffff;
+  height: 1px;
 }
