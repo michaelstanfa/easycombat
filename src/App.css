@@ -76,7 +76,7 @@ input {
   display: block;
   padding: .5rem 1rem;
   text-decoration: none;
-  background-color: rgb(167, 115, 115);
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgba(0,0,0,.125);
 }
 
@@ -87,8 +87,6 @@ input {
 .list-group-item-kill-button {
   float: right;
 }
-
-
 
 .card-header {
   padding: .5rem 1rem;
