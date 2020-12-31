@@ -12,13 +12,17 @@ function CharacterCard(props) {
 
   <div className="card">
     <div className="card-header">
-      <h5>{props.character.name}</h5> ({props.character.friendOrFoe})
+      <h5>{props.character.name}</h5>
+
     </div>
     <ul className="list-group list-group-flush">
       <li className="list-group-item">Max HP: <b>{props.character.hp}</b></li>
       <li className="list-group-item">Armor Class: <b>{props.character.armorclass}</b></li>
       <li className="list-group-item">Spell Save DC: <b>{props.character.spellsavedc}</b></li>
-      
+      <li className="list-group-item list-group-item-fof">
+          {props.character.friendOrFoe}
+          <Button className="list-group-item-kill-button" variant="danger">Kill</Button>
+      </li>
     </ul>
   </div>
 
@@ -129,6 +133,7 @@ class App extends React.Component {
     })
   
     event.preventDefault();
+    this.setShow(false);
   }
 
 

@@ -13,6 +13,18 @@ s
   }
 }
 
+.center {
+
+  left: 50%;
+  position: relative;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%)
+}
+
+.modal-line-item {
+  padding-top: 10px
+}
+
 .App-header {
   padding-top: 10px;
   background-color: #6e7074;
@@ -68,13 +80,23 @@ input {
   border: 1px solid rgba(0,0,0,.125);
 }
 
+.list-group-item-fof {
+  text-align: left
+}
+
+.list-group-item-kill-button {
+  float: right;
+}
+
+
+
 .card-header {
   padding: .5rem 1rem;
   margin-bottom: 0;
   background-color: rgba(0,0,0,.13);
   border-bottom: 1px solid
   rgba(0,0,0,.125);
-  display: inline-block
+  display: inline-block;
 }
 
 .card {
@@ -99,4 +121,30 @@ input {
 .card-group {
   display: flex;
   flex-flow: row wrap;
+}
+
+.modal-input-label {
+  width: 8rem;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.modal-input-text {
+  width: 60%
+}
+
+fieldset {
+  text-align: center;
+  margin: 10;
+}
+
+.radio-label {
+  display: inline-block;
+  padding-right: 1rem;
+   
+}
+.radio-input {
+  display: inline-block;
+  vertical-align: center;
+  padding-left: 1rem;
 }

@@ -7,41 +7,48 @@ class NewCharacterForm extends React.Component {
     render() {
       return (
         <form onSubmit={this.props.handleSubmitNewPlayer}>
-          <label>Name: </label><input type="text" name="name" value={this.props.state.character.name} onChange={this.props.handleNewPlayerInputChange}></input>
+          <label className='modal-input-label'>Name:</label>
+          <input className = 'modal-input-text' type="text" placeholder="Character Name" name="name" value={this.props.state.character.name} onChange={this.props.handleNewPlayerInputChange}></input>
           <br/>
-          <label>HP: </label><input type="number" name="hp" value={this.props.state.character.hp} onChange={this.props.handleNewPlayerInputChange}></input>
+          <label className='modal-input-label'>HP:</label>
+          <input className = 'modal-input-text' type="number" name="hp" value={this.props.state.character.hp} onChange={this.props.handleNewPlayerInputChange}></input>
           <br/>
-          <label>Armor Class: </label><input type="number" name="armorclass" value={this.props.state.character.armorclass} onChange={this.props.handleNewPlayerInputChange}></input>
+          <label className='modal-input-label'>Armor Class:</label>
+          <input className = 'modal-input-text' type="number" name="armorclass" value={this.props.state.character.armorclass} onChange={this.props.handleNewPlayerInputChange}></input>
           <br/>
-          <label>Spell Save DC: </label><input type="number" name="spellsavedc" value={this.props.state.character.spellsavedc} onChange={this.props.handleNewPlayerInputChange}></input>
+          <label className='modal-input-label'>Spell Save DC:</label>
+          <input className = 'modal-input-text' type="number" name="spellsavedc" value={this.props.state.character.spellsavedc} onChange={this.props.handleNewPlayerInputChange}></input>
           <br/>
           
-          <div className="radio">
-            <label>
-              <input
+          <fieldset>
+            <div className="radio">
+              
+              <input className='radio-input'
                 name="friendOrFoe"
                 type="radio"
                 value="Friend"
                 checked={this.props.state.character.friendOrFoe === "Friend"}
                 onChange={this.props.handleNewPlayerInputChange}
               />
-              Friend
-            </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input
+              <label className = 'radio-label'>
+                Friend
+              </label>  
+              <input className='radio-input'
                 name="friendOrFoe"
                 type="radio"
                 value="Foe"
                 checked={this.props.state.character.friendOrFoe === "Foe"}
                 onChange={this.props.handleNewPlayerInputChange}
               />
-              Foe
-            </label>
-          </div>
+              <label className = 'radio-label'>
+                Foe
+              </label>
+            </div>
+
+          </fieldset>
+          <br/>
           
-          <input type="Submit" variance="Success" defaultValue ="Add Player"/>
+          <input className="center" type="Submit" variance="Success" defaultValue ="Add Player"/>
           
         </form>
         
