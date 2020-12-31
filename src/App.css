@@ -6,7 +6,7 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+s
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -14,12 +14,13 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  padding-top: 10px;
+  background-color: #6e7074;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -35,4 +36,67 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+table {
+  border-spacing: 1em;
+  margin: 1rem auto;
+}
+td {
+  padding: 1rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid rgb(5, 0, 0);
+}
+
+#border-separate {
+  border-collapse: separate;
+}
+
+body {
+  text-align: center;
+}
+input {
+  margin-right: 20px;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  background-color: rgb(167, 115, 115);
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+.card-header {
+  padding: .5rem 1rem;
+  margin-bottom: 0;
+  background-color: rgba(0,0,0,.13);
+  border-bottom: 1px solid
+  rgba(0,0,0,.125);
+  display: inline-block
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  /* background-color: #fff; */
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  width: 18rem;
+  margin: 0;
+  font-family: var(--bs-font-sans-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+}
+
+.card-group {
+  display: flex;
+  flex-flow: row wrap;
 }
