@@ -8,16 +8,16 @@ class NewCharacterForm extends React.Component {
       return (
         <form onSubmit={this.props.handleSubmitNewPlayer}>
           <label className='modal-input-label'>Name:</label>
-          <input className = 'modal-input-text' type="text" placeholder="Character Name" name="name" value={this.props.state.character.name} onChange={this.props.handleNewPlayerInputChange}></input>
+          <input required className = 'modal-input-text' type="text" placeholder="Character Name" name="name" value={this.props.state.character.name} onChange={this.props.handleNewPlayerInputChange}></input>
           <br/>
           <label className='modal-input-label'>HP:</label>
-          <input className = 'modal-input-text' type="number" name="hp" value={this.props.state.character.hp} onChange={this.props.handleNewPlayerInputChange}></input>
+          <input required className = 'modal-input-text' type="text" pattern="\d*" name="hp" value={this.props.state.character.hp} onChange={this.props.handleNewPlayerInputChange}></input>
           <br/>
           <label className='modal-input-label'>Armor Class:</label>
-          <input className = 'modal-input-text' type="number" name="armorclass" value={this.props.state.character.armorclass} onChange={this.props.handleNewPlayerInputChange}></input>
+          <input required className = 'modal-input-text' type="text" pattern="\d*" name="armorclass" value={this.props.state.character.armorclass} onChange={this.props.handleNewPlayerInputChange}></input>
           <br/>
           <label className='modal-input-label'>Spell Save DC:</label>
-          <input className = 'modal-input-text' type="number" name="spellsavedc" value={this.props.state.character.spellsavedc} onChange={this.props.handleNewPlayerInputChange}></input>
+          <input required className = 'modal-input-text' type="text" pattern="\d*" name="spellsavedc" value={this.props.state.character.spellsavedc} onChange={this.props.handleNewPlayerInputChange}></input>
           <br/>
           
           <fieldset>
