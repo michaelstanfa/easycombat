@@ -11,8 +11,15 @@ function CharacterCard(props) {
   return (
 
   <div className="card">
+    <ul className = "list-group list-group-flush">
+      <li className="list-group-item list-group-item-fof">
+          {props.character.friendOrFoe}
+          <Button className="list-group-item-kill-button" variant="danger">Kill</Button>
+      </li>
+    </ul>
     <div className="card-header">
-      <h5>{props.character.name}</h5> ({props.character.friendOrFoe})
+      <h5>{props.character.name}</h5>
+
     </div>
     <ul className="list-group list-group-flush">
       <li className="list-group-item">Max HP: <b>{props.character.hp}</b></li>
@@ -129,6 +136,7 @@ class App extends React.Component {
     })
   
     event.preventDefault();
+    this.setShow(false);
   }
 
 
