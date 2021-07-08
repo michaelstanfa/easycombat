@@ -12,13 +12,17 @@ function CharacterCard(props) {
 
   <div className="card">
     <div className="card-header">
-      <h5>{props.character.name}</h5> ({props.character.friendOrFoe})
+      <h5>{props.character.name}</h5>
+
     </div>
     <ul className="list-group list-group-flush">
       <li className="list-group-item">Max HP: <b>{props.character.hp}</b></li>
       <li className="list-group-item">Armor Class: <b>{props.character.armorclass}</b></li>
       <li className="list-group-item">Spell Save DC: <b>{props.character.spellsavedc}</b></li>
-      
+      <li className="list-group-item list-group-item-fof">
+          {props.character.friendOrFoe}
+          <Button className="list-group-item-kill-button" variant="danger">Kill</Button>
+      </li>
     </ul>
   </div>
 
@@ -52,9 +56,47 @@ class CharacterCards extends React.Component {
       return(<div>Add a player to begin</div>);
     }
     //adding key=1 gets ride of the key issue even though it does absolutely nothing
-    return(<div key='1' className="card-group">{cards}</div>);
+    return(<div>Characters<hr className='white'/><div key='1' className="card-group">{cards}</div></div>);
   }
 
+}
+
+class CharacterList extends React.Component {
+
+  renderCharacterLineItem(character, key) {
+
+    return(
+      <tr>
+        <td>{character.name}</td>
+        <td>
+        <input key={key} required className = 'modal-input-text' type="text" pattern="\d*" name="initiative" value={character.initiative} onChange={this.props.handlePlayerInputChange}></input>
+        </td>
+      </tr>
+      )
+  }
+
+  render() {
+    let items = [];
+    let iterator = 0;
+  
+    this.props.characters.forEach(characterData => {
+      items = items.concat(this.renderCharacterLineItem(characterData, iterator));
+      iterator ++;
+    });
+
+    return(
+      <table>
+        <tbody>
+        <tr>
+          <th>Player</th>
+          <th>Initiative</th>
+          <th>Roll</th>
+        </tr>
+          {items}
+        </tbody>
+      </table>
+    )
+  }
 }
 
 class App extends React.Component {
@@ -67,9 +109,11 @@ class App extends React.Component {
         hp: 0,
         armorclass: 0,
         spellsavedc: 0,
-        friendOrFoe: "Friend"
+        friendOrFoe: "Friend",
+        initiative: 0
       },
       show: false,
+      showCombatPrep: false,
       history: [{
         characters: []
       }],
@@ -77,8 +121,11 @@ class App extends React.Component {
     
     };
 
+    this.handleCloseCombatPrep = this.handleCloseCombatPrep.bind(this);
+    this.handleOpenCombatPrep = this.handleOpenCombatPrep.bind(this);
     this.handleSubmitNewPlayer = this.handleSubmitNewPlayer.bind(this);
     this.handleNewPlayerInputChange = this.handleNewPlayerInputChange.bind(this);
+    this.handlePlayerInputChange = this.handlePlayerInputChange.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.setShow = this.setShow.bind(this);
@@ -94,6 +141,17 @@ class App extends React.Component {
     })
   }
 
+  handlePlayerInputChange(event) {    
+    console.log(event.target);
+    this.setState(prevState => {
+      console.log(prevState);
+      console.log(prevState.history);
+      let oldState = {...prevState};
+      oldState.character[event.target.name] = event.target.value;
+      return oldState;
+    })
+  }
+
   handleSubmitNewPlayer(event) {
 
     let blankCharacter = {
@@ -101,7 +159,8 @@ class App extends React.Component {
       hp: 0,
       armorclass: 0,
       spellsavedc: 0,
-      friendOrFoe: "Friend"
+      friendOrFoe: "Friend",
+      initiative: 0,
     }
 
     const history = this.state.history.slice();
@@ -112,7 +171,8 @@ class App extends React.Component {
       'hp': this.state.character.hp,
       'armorclass': this.state.character.armorclass,
       'spellsavedc': this.state.character.spellsavedc,
-      'friendOrFoe': this.state.character.friendOrFoe
+      'friendOrFoe': this.state.character.friendOrFoe,
+      'initiative': this.state.character.initiative
     }
 
     if(this.state.startedCharacters) {
@@ -125,13 +185,12 @@ class App extends React.Component {
       character: blankCharacter, 
       show: this.state.show,
       history: characters,
-      startedCharacters: true
+      startedCharacters: true,
     })
   
     event.preventDefault();
+    this.setShow(false);
   }
-
-
 
   setShow(show) {
     this.setState({show: show});
@@ -145,6 +204,18 @@ class App extends React.Component {
     this.setShow(false);
   }
 
+  setShowCombatPrep(show) {
+    this.setState({showCombatPrep: show});
+  }
+
+  handleOpenCombatPrep() {
+    this.setShowCombatPrep(true);
+  }
+
+  handleCloseCombatPrep() {
+    this.setShowCombatPrep(false);
+  }
+
   render() {
 
     return (
@@ -153,7 +224,7 @@ class App extends React.Component {
 
         <header className="App-header">
           
-
+        <hr/>
           
           <CharacterCards
             characters={this.state.history}
@@ -164,30 +235,65 @@ class App extends React.Component {
             Add Player
           </Button>
 
+          <hr/>
+
+          
+          <Button variant="info" onClick={this.handleOpenCombatPrep}>
+            Prepare Initiative for Combat
+          </Button>
+
           <Modal
             show = {this.state.show}
             onHide = {this.handleClose}
             backdrop = "static"
           >
-            {/* <Modal.Dialog> */}
-            <Modal.Header closeButton>
-              <Modal.Title>New Character</Modal.Title>
-            </Modal.Header>
+              {/* <Modal.Dialog> */}
+              <Modal.Header closeButton>
+                <Modal.Title>New Character</Modal.Title>
+              </Modal.Header>
 
-            <Modal.Body>
-              <NewCharacterForm
-                state = {this.state}
-                handleNewPlayerInputChange = {this.handleNewPlayerInputChange}
-                handleSubmitNewPlayer = {this.handleSubmitNewPlayer}
-              />
-            </Modal.Body>
+              <Modal.Body>
+                <NewCharacterForm
+                  state = {this.state}
+                  handleNewPlayerInputChange = {this.handleNewPlayerInputChange}
+                  handleSubmitNewPlayer = {this.handleSubmitNewPlayer}
+                />
+              </Modal.Body>
 
-            <Modal.Footer>
-              <Button variant="secondary" onClick = {this.handleClose}>Close</Button>
-            </Modal.Footer>
-          {/* </Modal.Dialog> */}
-        </Modal>
+              <Modal.Footer>
+                <Button variant="secondary" onClick = {this.handleClose}>Close</Button>
+              </Modal.Footer>
+            
+            </Modal>
+
+            {/* combat modal */}
+
+            <Modal
+              show = {this.state.showCombatPrep}
+              onHide = {this.handleCloseCombatPrep}
+              backdrop = "static"
+          >
+              {/* <Modal.Dialog> */}
+              <Modal.Header closeButton>
+                <Modal.Title>Combat Initiative Setup</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <CharacterList
+                  handlePlayerInputChange = {this.handlePlayerInputChange}
+                  characters={this.state.history}
+                />
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button variant="secondary" onClick = {this.handleCloseCombatPrep}>Close</Button>
+              </Modal.Footer>
+            
+            </Modal>
+      
         </header>
+
+        
       </div>
     );
   }

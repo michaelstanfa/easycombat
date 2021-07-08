@@ -13,6 +13,18 @@ s
   }
 }
 
+.center {
+
+  left: 50%;
+  position: relative;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%)
+}
+
+.modal-line-item {
+  padding-top: 10px
+}
+
 .App-header {
   padding-top: 10px;
   background-color: #6e7074;
@@ -39,24 +51,29 @@ s
 }
 
 table {
-  border-spacing: 1em;
-  margin: 1rem auto;
+  padding: 2px;
+  border: 2px;
+  text-align: center;
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
 }
-td {
-  padding: 1rem 1.2rem;
-  border-radius: 6px;
-  border: 1px solid rgb(5, 0, 0);
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+  border-top: 1px solid rgb(121, 119, 119);
+  border-bottom: 1px solid rgb(121, 119, 119);
+}
+
+td, th {
+  padding: 1rem 1.2rem; 
+  
 }
 
 #border-separate {
   border-collapse: separate;
-}
-
-body {
-  text-align: center;
-}
-input {
-  margin-right: 20px;
 }
 
 .list-group-item {
@@ -64,8 +81,16 @@ input {
   display: block;
   padding: .5rem 1rem;
   text-decoration: none;
-  background-color: rgb(167, 115, 115);
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgba(0,0,0,.125);
+}
+
+.list-group-item-fof {
+  text-align: left
+}
+
+.list-group-item-kill-button {
+  float: right;
 }
 
 .card-header {
@@ -74,7 +99,7 @@ input {
   background-color: rgba(0,0,0,.13);
   border-bottom: 1px solid
   rgba(0,0,0,.125);
-  display: inline-block
+  display: inline-block;
 }
 
 .card {
@@ -99,4 +124,39 @@ input {
 .card-group {
   display: flex;
   flex-flow: row wrap;
+}
+
+.modal-input-label {
+  width: 8rem;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.modal-input-text {
+  width: 60%
+}
+
+fieldset {
+  text-align: center;
+  margin: 10;
+}
+
+.radio-label {
+  display: inline-block;
+  padding-right: 1rem;
+   
+}
+.radio-input {
+  display: inline-block;
+  vertical-align: center;
+  padding-left: 1rem;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color:#ffffff;
+  height: 1px;
 }
